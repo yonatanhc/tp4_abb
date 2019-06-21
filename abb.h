@@ -58,14 +58,14 @@ Nodo_abb* Abb::obtener_raiz(){
 }
 
 Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){ //te fijas antes q el padre no sea raiz
-	if(nodo->obtener_dato()->obtener_clave() > clave){
+	if(nodo->obtener_clave() > clave){
 		Nodo_abb* nodo_izq = nodo->obtener_izquierda();
 		if(nodo_izq){
-			if(nodo_izq->obtener_dato()->obtener_clave() == clave){
+			if(nodo_izq->obtener_clave() == clave){
 				return nodo;
 			}
 			
-			buscar_padre(nodo_izq,clave);
+			return buscar_padre(nodo_izq,clave);
 			
 		}
 		else return nodo;
@@ -73,11 +73,11 @@ Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){ //te fijas antes q el pad
 	else{
 		Nodo_abb* nodo_der = nodo->obtener_derecha();
 		if(nodo_der){
-			if(nodo_der->obtener_dato()->obtener_clave() == clave){
+			if(nodo_der->obtener_clave() == clave){
 				return nodo;
 			}
 			
-			buscar_padre(nodo_der,clave);
+			return buscar_padre(nodo_der,clave);
 			
 		}
 		else return nodo;
@@ -87,10 +87,10 @@ Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){ //te fijas antes q el pad
 
 Nodo_abb* Abb::buscar(Nodo_abb* nodo,int clave){
 	if(nodo == NULL) return NULL;
-	if(nodo->obtener_dato()->obtener_clave() == clave){
+	if(nodo->obtener_clave() == clave){
 		return nodo;
 	}
-	if(nodo->obtener_dato()->obtener_clave() > clave){
+	if(nodo->obtener_clave() > clave){
 		return buscar_nodo(nodo->obtener_izquierda(),clave);
 	}
 
@@ -117,7 +117,7 @@ void Abb::agregar_nodo(int clave,Cliente* d){
 		else{
 
 			Nodo_abb* padre = buscar_padre(raiz,clave);
-			if(padre->obtener_dato()->obtener_clave() > clave){
+			if(padre->obtener_clave() > clave){
 				padre->cambiar_izquierda(nodo);
 			}
 			else padre->cambiar_derecha(nodo);
