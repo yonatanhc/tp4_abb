@@ -68,7 +68,7 @@ Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){ //te fijas antes q el pad
 			return buscar_padre(nodo_izq,clave);
 			
 		}
-		else return nodo;
+		return nodo;
 	}
 	else{
 		Nodo_abb* nodo_der = nodo->obtener_derecha();
@@ -80,7 +80,7 @@ Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){ //te fijas antes q el pad
 			return buscar_padre(nodo_der,clave);
 			
 		}
-		else return nodo;
+		return nodo;
 	}
 }
 
