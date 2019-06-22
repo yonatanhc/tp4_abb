@@ -1,0 +1,7 @@
+10012345,jose maria
+10000099,juan m,maria hg
+11198745,jorge jhf
+11197653,guille,rebeca,manuel
+23451233,yona
+10000009,yovana,dina,sonia,katty
+10000088,mari
