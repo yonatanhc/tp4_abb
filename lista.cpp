@@ -1,10 +1,12 @@
 #include "lista.h"
 
-
+/*CONSTRUCTOR*/
 Lista::Lista(){
 	this->primero = NULL;
 	this->tam = 0;
 }
+
+/*METODOS OBTENER*/
 
 Nodo* Lista::obtener_nodo(int pos){
 
@@ -14,6 +16,11 @@ Nodo* Lista::obtener_nodo(int pos){
 
 }
 
+int Lista::tamanio(){
+	return this->tam;
+}
+
+/*METODOS*/
 
 void Lista::agregar(string d,int pos){
 
@@ -31,9 +38,7 @@ void Lista::agregar(string d,int pos){
 }
 
 
-int Lista::tamanio(){
-	return this->tam;
-}
+
 
 
 string Lista::consultar(int pos){
@@ -63,7 +68,7 @@ void Lista::eliminar(int pos) {
 	delete aux;
 }
 
-
+/*DESTRUCTOR*/
 Lista::~Lista(){
 	while(!lista_vacia()){
 		eliminar(1);

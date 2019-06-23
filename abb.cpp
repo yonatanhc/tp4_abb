@@ -1,26 +1,32 @@
 #include "abb.h"
 
 
+/*CONSTRUCTOR*/
 
 Abb::Abb(){
 	raiz = NULL;
 	cantidad = 0;
 }
 
+
+/*METODO OBTENER*/
+
 Nodo_abb* Abb::obtener_raiz(){
 	return raiz;
 }
 
-Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){ 
+/*METODOS*/
+
+Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){
 	if(nodo->obtener_clave() > clave){
 		Nodo_abb* nodo_izq = nodo->obtener_izquierda();
 		if(nodo_izq){
 			if(nodo_izq->obtener_clave() == clave){
 				return nodo;
 			}
-			
+
 			return buscar_padre(nodo_izq,clave);
-			
+
 		}
 		return nodo;
 	}
@@ -30,9 +36,9 @@ Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){
 			if(nodo_der->obtener_clave() == clave){
 				return nodo;
 			}
-			
+
 			return buscar_padre(nodo_der,clave);
-			
+
 		}
 		return nodo;
 	}
@@ -159,13 +165,15 @@ void Abb::pos_orden(Nodo_abb* nodo){
 	pos_orden(nodo->obtener_izquierda());
 	pos_orden(nodo->obtener_derecha());
 	eliminar_nodo_hoja(nodo,nodo->obtener_clave());
-	
-	
+
+
 }
 
 int Abb::cantidad_nodos(){
 	return cantidad;
 }
+
+/*DESTRUCTOR*/
 
 Abb::~Abb(){
 	pos_orden(raiz);
