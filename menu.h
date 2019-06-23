@@ -8,6 +8,16 @@
 #include "familia.h"
 #include <fstream>
 
+
+
+
+const int AGREGAR_CLIENTE = 1;
+const int DAR_BAJA = 2;
+const int LISTAR_CLIENTES = 3;
+const int BUSCAR_CLIENTE = 4;
+const int SALIR = 5;
+
+
 class Menu{
 
 	private:
@@ -34,8 +44,8 @@ class Menu{
 		void agregar_nuevo_cliente();
 		Lista* nuevos_miembros();
 		void mostrar(Nodo_abb* nodo);
-		void pre_orden(Nodo_abb* nodo);
+		void in_orden(Nodo_abb* nodo);
 		void agregar_cliente();
-	
+
 };
 #endif

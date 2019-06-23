@@ -8,21 +8,16 @@ Menu::Menu(){
 void Menu::guardar_dato(string linea){
 	Lista* lista = new Lista();
 	size_t pos_ini = 0;
-
 	size_t pos = linea.find(',');
  	string clave_aux = linea.substr(pos_ini,pos);
- 	
+
  	while(pos != string::npos){
  		pos_ini = pos;
  		pos = linea.find(',',pos+1);
  		string nombre = linea.substr(pos_ini+1,pos-(pos_ini+1));
  		lista->agregar(nombre,lista->tamanio()+1);
- 		
- 			
  	}
-
  	int clave = atoi(clave_aux.c_str());
-
  	Cliente* cliente;
  	if(lista->tamanio() > 1){
  		Familia* familia = new Familia(lista);
@@ -32,8 +27,6 @@ void Menu::guardar_dato(string linea){
  		Individuo* individuo = new Individuo(lista);
  		cliente = individuo;
  	}
-
- 	
  	arbol->agregar_nodo(clave,cliente);
 }
 
@@ -52,8 +45,6 @@ void Menu::dar_de_baja(){
 
 	cout << "ingrese el numero de telefono a dar de baja:" << endl;
 	cin >> clave;
-
-
 	bool se_dio_de_baja = arbol->eliminar_nodo(clave);
 	if(se_dio_de_baja){
 		cout << "el cliente se dio de baja correctamente" << endl;
@@ -61,13 +52,12 @@ void Menu::dar_de_baja(){
 	else {
 		cout << "el  numero de telefono no se encuentra vinculado a un cliente" << endl;
 	}
-
 }
 
 void Menu::mostrar(Nodo_abb* nodo){
 	cout << nodo->obtener_clave() <<" ";
 	Lista* lista = nodo->obtener_dato()->obtener_miembros();
-	
+
 	for (int i = 1; i <= lista->tamanio(); ++i){
 		cout << lista->consultar(i) << " ";
 	}
@@ -106,10 +96,10 @@ int Menu::generar_clave(){
 		if(arbol->buscar_nodo(clave)){
 			clave += uno;
 		}
-		else no_encontrado = false;	
+		else no_encontrado = false;
 	}
 	return clave;
-	
+
 }
 
 Lista* Menu::nuevos_miembros(){
@@ -147,28 +137,30 @@ void Menu::agregar_nuevo_cliente(){
 
 void Menu::ejecutar_opcion(int opcion){
 	switch(opcion){
-		case 1:
+		case AGREGAR_CLIENTE:
 			agregar_nuevo_cliente();
 			break;
-		case 2:
+		case DAR_BAJA:
 			dar_de_baja();
 			break;
-		case 3:
+		case LISTAR_CLIENTES:
 			listar_clientes();
 			break;
-		case 4:
+		case BUSCAR_CLIENTE:
 			buscar_cliente();
 			break;
+        case SALIR:
+            cout<<"Saliendo.."<<endl;
+            break;
 		default:
-			cout << "saliendo..." << endl;
-	}	
+			cout << "Ingreso invalido" << endl;
+	}
 }
 
 void Menu::menu_de_opciones(char const* archivo){
 	leer_archivo(archivo);
 	int opcion;
 	do{
-		
 		cout <<"*"<<" **********************************" <<"*"<< endl;
 		cout <<"*"<<"           MENU DE OPCIONES        " <<"*"<< endl;
 		cout <<"*"<<" Agregar un Nuevo Cliente       [1]" <<"*"<< endl;
@@ -182,7 +174,7 @@ void Menu::menu_de_opciones(char const* archivo){
 
 		cin >> opcion;
 		ejecutar_opcion(opcion);
-	}while(opcion != 5);	
+	}while(opcion != SALIR);
 }
 
 Menu::~Menu(){
