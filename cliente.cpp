@@ -7,3 +7,7 @@ Cliente::Cliente(Lista* lista){
 Lista* Cliente::obtener_miembros(){
 	return miembros;
 }
+
+Cliente::~Cliente(){
+	
+}

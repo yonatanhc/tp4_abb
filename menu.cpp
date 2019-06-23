@@ -56,7 +56,7 @@ void Menu::dar_de_baja(){
 
 	bool se_dio_de_baja = arbol->eliminar_nodo(clave);
 	if(se_dio_de_baja){
-		cout << "el cliente se dio correctamente de baja" << endl;
+		cout << "el cliente se dio de baja correctamente" << endl;
 	}
 	else {
 		cout << "el  numero de telefono no se encuentra vinculado a un cliente" << endl;
@@ -65,13 +65,13 @@ void Menu::dar_de_baja(){
 }
 
 void Menu::mostrar(Nodo_abb* nodo){
-	cout << nodo->obtener_clave() << endl;
-	cout << nodo->obtener_dato()->obtener_tipo_de_cliente() << endl;
+	cout << nodo->obtener_clave() <<" ";
 	Lista* lista = nodo->obtener_dato()->obtener_miembros();
 	
 	for (int i = 1; i <= lista->tamanio(); ++i){
-		cout << lista->consultar(i) << endl;
+		cout << lista->consultar(i) << " ";
 	}
+	cout << endl;
 }
 
 void Menu::pre_orden(Nodo_abb* nodo){
@@ -87,12 +87,15 @@ void Menu::listar_clientes(){
 
 void Menu::buscar_cliente(){
 	int clave;
-	cout << "ingrese el numero de telefono a buscar:" << endl;
+	cout << "ingrese el numero de telefono del cliente a buscar:" << endl;
 	cin >> clave;
 
 	Nodo_abb* nodo = arbol->buscar_nodo(clave);
 	if(!nodo) cout << "el numero telefonico igresado no se encuentra vinculado a un cliente" << endl;
-	else mostrar(nodo);
+	else {
+		cout << "el cliente asociado al numero de telefono ingresado es:" << endl;
+		mostrar(nodo);
+	}
 }
 
 int Menu::generar_clave(){
@@ -182,4 +185,8 @@ void Menu::menu_de_opciones(char const* archivo){
 				cout << "saliendo..." << endl;
 		}
 	}while(opcion != 5);	
+}
+
+Menu::~Menu(){
+	delete arbol;
 }

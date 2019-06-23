@@ -12,7 +12,6 @@ class Individuo:public Cliente{
 		Individuo(Lista* miembros);
 		string obtener_tipo_de_cliente();
 		//int obtener_descuento();
-		//~Individuo();
 	
 };
 #endif

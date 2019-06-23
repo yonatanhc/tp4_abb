@@ -17,9 +17,7 @@ class Cliente{
 
 		virtual string obtener_tipo_de_cliente() = 0;
 
-		//virtual int obtener_descuento() = 0;
-
-	
+		virtual ~Cliente() = 0;
 	
 };
 

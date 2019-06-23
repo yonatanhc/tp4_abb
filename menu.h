@@ -17,7 +17,7 @@ class Menu{
 
 		Menu();
 		void menu_de_opciones(char const* archivo);
-		
+		~Menu();
 
 	private:
 		void leer_archivo(char const* archivo);

@@ -11,7 +11,7 @@ Nodo_abb* Abb::obtener_raiz(){
 	return raiz;
 }
 
-Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){ //te fijas antes q el padre no sea raiz
+Nodo_abb* Abb::buscar_padre(Nodo_abb* nodo,int clave){ 
 	if(nodo->obtener_clave() > clave){
 		Nodo_abb* nodo_izq = nodo->obtener_izquierda();
 		if(nodo_izq){
@@ -104,6 +104,8 @@ bool Abb::eliminar_nodo_hoja(Nodo_abb* nodo,int clave){
 		padre->cambiar_izquierda(NULL);
 	}
 	else padre->cambiar_derecha(NULL);
+	delete nodo->obtener_dato()->obtener_miembros();
+	delete nodo->obtener_dato();
 	delete nodo;
 	cantidad--;
 	return true;
