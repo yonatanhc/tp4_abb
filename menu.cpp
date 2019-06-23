@@ -74,15 +74,15 @@ void Menu::mostrar(Nodo_abb* nodo){
 	cout << endl;
 }
 
-void Menu::pre_orden(Nodo_abb* nodo){
+void Menu::in_orden(Nodo_abb* nodo){
 	if(!nodo) return;
-	pre_orden(nodo->obtener_izquierda());
+	in_orden(nodo->obtener_izquierda());
 	mostrar(nodo);
-	pre_orden(nodo->obtener_derecha());
+	in_orden(nodo->obtener_derecha());
 }
 
 void Menu::listar_clientes(){
-	pre_orden(arbol->obtener_raiz());
+	in_orden(arbol->obtener_raiz());
 }
 
 void Menu::buscar_cliente(){
@@ -145,6 +145,24 @@ void Menu::agregar_nuevo_cliente(){
 	arbol->agregar_nodo(clave,cliente);
 }
 
+void Menu::ejecutar_opcion(int opcion){
+	switch(opcion){
+		case 1:
+			agregar_nuevo_cliente();
+			break;
+		case 2:
+			dar_de_baja();
+			break;
+		case 3:
+			listar_clientes();
+			break;
+		case 4:
+			buscar_cliente();
+			break;
+		default:
+			cout << "saliendo..." << endl;
+	}	
+}
 
 void Menu::menu_de_opciones(char const* archivo){
 	leer_archivo(archivo);
@@ -163,27 +181,7 @@ void Menu::menu_de_opciones(char const* archivo){
 		cout <<"*"<<" **********************************" <<"*"<< endl;
 
 		cin >> opcion;
-
-		switch(opcion){
-			case 1:
-				agregar_nuevo_cliente();
-			break;
-
-			case 2:
-				dar_de_baja();
-			break;
-
-			case 3:
-				listar_clientes();
-			break;
-
-			case 4:
-				buscar_cliente();
-			break;
-
-			default:
-				cout << "saliendo..." << endl;
-		}
+		ejecutar_opcion(opcion);
 	}while(opcion != 5);	
 }
 
