@@ -20,6 +20,13 @@ class Menu{
 		~Menu();
 
 	private:
+
+		/* Descripcion: Ejecuta la opcion a los valores del valor del parametro recibido
+		 * Pre: Opción tiene un valor dentro del rango 1 al 5
+		 * Publicación:
+		*/
+		void  ejecutar_opcion ( int opcion);
+		
 		void leer_archivo(char const* archivo);
 		void listar_clientes();
 		void dar_de_baja();

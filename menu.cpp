@@ -168,27 +168,9 @@ void Menu::precio_de_un_producto(){
 
 }
 
+void  Menu::ejecutar_opcion( int opcion) {
 
-void Menu::menu_de_opciones(char const* archivo){
-	leer_archivo(archivo);
-	int opcion;
-	do{
-		
-		cout <<"*"<<" **********************************" <<"*"<< endl;
-		cout <<"*"<<"           MENU DE OPCIONES        " <<"*"<< endl;
-		cout <<"*"<<" Agregar un Nuevo Cliente       [1]" <<"*"<< endl;
-		cout <<"*"<<" Dar de Baja un Cliente         [2]" <<"*"<< endl;
-		cout <<"*"<<" Listar Clientes                [3]" <<"*"<< endl;
-		cout <<"*"<<" Buscar un cliente              [4]" <<"*"<< endl;
-		cout <<"*"<<" Precio de un Producto          [5]" <<"*"<< endl;
-		cout <<"*"<<" Salir                          [6]" <<"*"<< endl;
-		cout <<"*"<<"                                   " <<"*"<< endl;
-		cout <<"*"<<"  Elija una de las Opciones:       " <<"*"<< endl;
-		cout <<"*"<<" **********************************" <<"*"<< endl;
-
-		cin >> opcion;
-
-		switch(opcion){
+	switch(opcion){
 			case 1:
 				agregar_nuevo_cliente();
 			
@@ -213,6 +195,30 @@ void Menu::menu_de_opciones(char const* archivo){
 			default:
 				cout << "saliendo..." << endl;
 		}
+}
+
+
+
+void Menu::menu_de_opciones(char const* archivo){
+	leer_archivo(archivo);
+	int opcion;
+	do{
+		
+		cout <<"*"<<" **********************************" <<"*"<< endl;
+		cout <<"*"<<"           MENU DE OPCIONES        " <<"*"<< endl;
+		cout <<"*"<<" Agregar un Nuevo Cliente       [1]" <<"*"<< endl;
+		cout <<"*"<<" Dar de Baja un Cliente         [2]" <<"*"<< endl;
+		cout <<"*"<<" Listar Clientes                [3]" <<"*"<< endl;
+		cout <<"*"<<" Buscar un cliente              [4]" <<"*"<< endl;
+		cout <<"*"<<" Precio de un Producto          [5]" <<"*"<< endl;
+		cout <<"*"<<" Salir                          [6]" <<"*"<< endl;
+		cout <<"*"<<"                                   " <<"*"<< endl;
+		cout <<"*"<<"  Elija una de las Opciones:       " <<"*"<< endl;
+		cout <<"*"<<" **********************************" <<"*"<< endl;
+
+		cin >> opcion;
+
+		ejecutar_opcion(opcion);
 	}while(opcion != 6);	
 }
 
