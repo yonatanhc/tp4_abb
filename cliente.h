@@ -7,15 +7,20 @@
 class Cliente{
 
 	private:
-
-		Lista* miembros;
+		int descuento;
 
 	public:
-		Cliente(Lista* lista);
+		Cliente(int descuento);
 
-		Lista* obtener_miembros();
+		int obtener_descuento();
+
+		
+
+		virtual void listar_cliente() = 0;
 
 		virtual string obtener_tipo_de_cliente() = 0;
+
+		virtual int obtener_numero_de_telefono() = 0;
 
 		virtual ~Cliente() = 0;
 	

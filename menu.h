@@ -11,7 +11,7 @@
 class Menu{
 
 	private:
-		Abb* arbol;
+		Abb arbol;
 
 	public:
 
@@ -27,7 +27,7 @@ class Menu{
 		void guardar_dato(string linea);
 		int generar_clave();
 		void agregar_nuevo_cliente();
-		Lista* nuevos_miembros();
+		void agregar_familia(int clave);
 		void mostrar(Nodo_abb* nodo);
 		void pre_orden(Nodo_abb* nodo);
 		void agregar_cliente();

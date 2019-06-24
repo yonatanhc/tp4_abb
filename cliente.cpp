@@ -1,11 +1,11 @@
 #include "cliente.h"
 
-Cliente::Cliente(Lista* lista){
-	miembros = lista;
+Cliente::Cliente(int descuento){
+	this->descuento = descuento;
 }
 
-Lista* Cliente::obtener_miembros(){
-	return miembros;
+int Cliente::obtener_descuento(){
+	return descuento;
 }
 
 Cliente::~Cliente(){

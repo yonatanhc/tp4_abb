@@ -3,24 +3,31 @@
 
 #include "cliente.h"
 
+const int descuento_fam = 15;
 
 class Familia:public Cliente{
 
 	private:
 
+		int numero_de_telefono;
+
 		string tipo_de_cliente;
 
-		//int descuento;
+		Lista* miembros;
 
 
 	public:
-		Familia(Lista* miembros);
+		Familia(int numero,Lista* miembros);
 
 		string obtener_tipo_de_cliente();
 
-		//int obtener_descuento();
+		void listar_cliente();
 
-		//~Familia();
+		int obtener_numero_de_telefono();
+
+		
+
+
 	
 };
 #endif

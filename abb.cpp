@@ -104,7 +104,6 @@ bool Abb::eliminar_nodo_hoja(Nodo_abb* nodo,int clave){
 		padre->cambiar_izquierda(NULL);
 	}
 	else padre->cambiar_derecha(NULL);
-	delete nodo->obtener_dato()->obtener_miembros();
 	delete nodo->obtener_dato();
 	delete nodo;
 	cantidad--;

@@ -2,12 +2,13 @@
 #include <stdlib.h>
 
 Menu::Menu(){
-	arbol = new Abb();
+	arbol = Abb();
 }
 
 void Menu::guardar_dato(string linea){
 	Lista* lista = new Lista();
 	size_t pos_ini = 0;
+	string nombre;
 
 	size_t pos = linea.find(',');
  	string clave_aux = linea.substr(pos_ini,pos);
@@ -15,26 +16,26 @@ void Menu::guardar_dato(string linea){
  	while(pos != string::npos){
  		pos_ini = pos;
  		pos = linea.find(',',pos+1);
- 		string nombre = linea.substr(pos_ini+1,pos-(pos_ini+1));
- 		lista->agregar(nombre,lista->tamanio()+1);
- 		
- 			
+ 		nombre = linea.substr(pos_ini+1,pos-(pos_ini+1));
+ 		if(pos != string::npos) lista->agregar(nombre,lista->tamanio()+1);
+ 				
  	}
 
  	int clave = atoi(clave_aux.c_str());
 
  	Cliente* cliente;
- 	if(lista->tamanio() > 1){
- 		Familia* familia = new Familia(lista);
+ 	if(lista->tamanio() > 0){
+ 		Familia* familia = new Familia(clave,lista);
  		cliente = familia;
  	}
  	else {
- 		Individuo* individuo = new Individuo(lista);
+ 		delete lista;
+ 		Individuo* individuo = new Individuo(clave,nombre);
  		cliente = individuo;
  	}
 
  	
- 	arbol->agregar_nodo(clave,cliente);
+ 	arbol.agregar_nodo(clave,cliente);
 }
 
 void Menu::leer_archivo(char const* archivo){
@@ -54,7 +55,7 @@ void Menu::dar_de_baja(){
 	cin >> clave;
 
 
-	bool se_dio_de_baja = arbol->eliminar_nodo(clave);
+	bool se_dio_de_baja = arbol.eliminar_nodo(clave);
 	if(se_dio_de_baja){
 		cout << "el cliente se dio de baja correctamente" << endl;
 	}
@@ -65,13 +66,9 @@ void Menu::dar_de_baja(){
 }
 
 void Menu::mostrar(Nodo_abb* nodo){
-	cout << nodo->obtener_clave() <<" ";
-	Lista* lista = nodo->obtener_dato()->obtener_miembros();
-	
-	for (int i = 1; i <= lista->tamanio(); ++i){
-		cout << lista->consultar(i) << " ";
-	}
-	cout << endl;
+	Cliente* cliente = nodo->obtener_dato();
+	cout << cliente->obtener_numero_de_telefono() <<" ";
+	cliente->listar_cliente();
 }
 
 void Menu::pre_orden(Nodo_abb* nodo){
@@ -82,7 +79,7 @@ void Menu::pre_orden(Nodo_abb* nodo){
 }
 
 void Menu::listar_clientes(){
-	pre_orden(arbol->obtener_raiz());
+	pre_orden(arbol.obtener_raiz());
 }
 
 void Menu::buscar_cliente(){
@@ -90,7 +87,7 @@ void Menu::buscar_cliente(){
 	cout << "ingrese el numero de telefono del cliente a buscar:" << endl;
 	cin >> clave;
 
-	Nodo_abb* nodo = arbol->buscar_nodo(clave);
+	Nodo_abb* nodo = arbol.buscar_nodo(clave);
 	if(!nodo) cout << "el numero telefonico igresado no se encuentra vinculado a un cliente" << endl;
 	else {
 		cout << "el cliente asociado al numero de telefono ingresado es:" << endl;
@@ -103,7 +100,7 @@ int Menu::generar_clave(){
 	int clave = 00100030;
 	bool no_encontrado = true;
 	while(no_encontrado){
-		if(arbol->buscar_nodo(clave)){
+		if(arbol.buscar_nodo(clave)){
 			clave += uno;
 		}
 		else no_encontrado = false;	
@@ -112,7 +109,7 @@ int Menu::generar_clave(){
 	
 }
 
-Lista* Menu::nuevos_miembros(){
+void Menu::agregar_familia(int clave){
 	Lista* lista = new Lista();
 	char opcion;
 	string nombre;
@@ -125,24 +122,30 @@ Lista* Menu::nuevos_miembros(){
 		lista->agregar(nombre,lista->tamanio()+1);
 	}while(opcion == 's');
 
-	return lista;
-
+	Familia* familia = new Familia(clave,lista);
+	Cliente* cliente = familia;
+	arbol.agregar_nodo(clave,cliente);
 }
 
 void Menu::agregar_nuevo_cliente(){
-	Lista* lista = nuevos_miembros();
-	Cliente* cliente;
-	if(lista->tamanio() > 1){
-		Familia* familia = new Familia(lista);
-		cliente = familia;
-	}
-	else {
-		Individuo* individuo = new Individuo(lista);
-		cliente = individuo;
+	int clave = generar_clave();
+	int tipo;
+	string nombre;
+	cout << "que tipo de cliente va ingresar?:"<< endl;
+	cout << "INDIVIDUO.....................[1]"<< endl;
+	cout << "FAMILIA.......................[2]"<< endl;
+	cin >> tipo;
+	if(tipo == 2) agregar_familia(clave);
+	else{
+		cout << "ingrese el nombre del cliente:" <<endl;
+		cin >> nombre;
+		Individuo* individuo = new Individuo(clave,nombre);
+		Cliente* cliente = individuo;
+		arbol.agregar_nodo(clave,cliente);
 	}
 
-	int clave = generar_clave();
-	arbol->agregar_nodo(clave,cliente);
+
+
 }
 
 
@@ -188,5 +191,5 @@ void Menu::menu_de_opciones(char const* archivo){
 }
 
 Menu::~Menu(){
-	delete arbol;
+	
 }
