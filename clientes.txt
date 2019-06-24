@@ -1,0 +1,10 @@
+10012345,jose maria
+10000099,juan morales,maria gonzales
+11198745,jorge suarez
+11197653,guille rojas,rebeca molina,manuel silva
+23451233,jinna nuñez
+10000009,yobana godoy,dina castro,sonia aguirre,katty benitez
+10000088,maribel acosta
+12345678,Juan Perez
+55555555,Rosa Romero,Pedro Perez,Juan Perez Romero,María Perez Romero 
+11932119,erick medina,pedro moyano escobar,pablo avila soria,lucero mendez cruz,luz acuña campos,ester campos duarte,evert olivera duarte

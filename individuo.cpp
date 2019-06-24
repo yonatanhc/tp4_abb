@@ -21,4 +21,10 @@ int Individuo::obtener_numero_de_telefono(){
 	return numero_de_telefono;
 }
 
+int Individuo::cantidad_de_integrantes(){
+	return 1;
+}
+
+
+
 

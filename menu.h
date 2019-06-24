@@ -31,6 +31,8 @@ class Menu{
 		void mostrar(Nodo_abb* nodo);
 		void pre_orden(Nodo_abb* nodo);
 		void agregar_cliente();
+		void precio_de_un_producto();
+		void in_orden(Nodo_abb* nodo,float precio);
 	
 };
 #endif

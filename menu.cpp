@@ -111,16 +111,16 @@ int Menu::generar_clave(){
 
 void Menu::agregar_familia(int clave){
 	Lista* lista = new Lista();
-	char opcion;
+	char continuar;
 	string nombre;
 	do{
 		cout << "ingrese el nombre del nuevo cliente:" << endl;
 		cin >> nombre;
 
 		cout << "va incorporar mas nombres,SI(s) o NO(n)" << endl;
-		cin >> opcion;
+		cin >> continuar;
 		lista->agregar(nombre,lista->tamanio()+1);
-	}while(opcion == 's');
+	}while(continuar == 's');
 
 	Familia* familia = new Familia(clave,lista);
 	Cliente* cliente = familia;
@@ -144,7 +144,27 @@ void Menu::agregar_nuevo_cliente(){
 		arbol.agregar_nodo(clave,cliente);
 	}
 
+}
 
+void Menu::in_orden(Nodo_abb* nodo,float precio){
+	if(!nodo) return;
+	
+	Cliente* cliente = nodo->obtener_dato();
+	int cantidad = cliente->cantidad_de_integrantes();
+	float precio_final = cantidad*(precio - ((precio*cliente->obtener_descuento())/100));
+	cout << cliente->obtener_numero_de_telefono() << ".........." << precio_final << endl;
+
+	in_orden(nodo->obtener_izquierda(),precio);
+	in_orden(nodo->obtener_derecha(),precio);
+}
+
+void Menu::precio_de_un_producto(){
+	float precio;
+	cout << "ingrese el precio del producto" << endl;
+	cin >> precio;
+
+	cout << "PRECIO DEL PRODUCTO POR CLIENTE ES:" << endl;
+	in_orden(arbol.obtener_raiz(),precio);
 
 }
 
@@ -160,7 +180,8 @@ void Menu::menu_de_opciones(char const* archivo){
 		cout <<"*"<<" Dar de Baja un Cliente         [2]" <<"*"<< endl;
 		cout <<"*"<<" Listar Clientes                [3]" <<"*"<< endl;
 		cout <<"*"<<" Buscar un cliente              [4]" <<"*"<< endl;
-		cout <<"*"<<" Salir                          [5]" <<"*"<< endl;
+		cout <<"*"<<" Precio de un Producto          [5]" <<"*"<< endl;
+		cout <<"*"<<" Salir                          [6]" <<"*"<< endl;
 		cout <<"*"<<"                                   " <<"*"<< endl;
 		cout <<"*"<<"  Elija una de las Opciones:       " <<"*"<< endl;
 		cout <<"*"<<" **********************************" <<"*"<< endl;
@@ -170,6 +191,7 @@ void Menu::menu_de_opciones(char const* archivo){
 		switch(opcion){
 			case 1:
 				agregar_nuevo_cliente();
+			
 			break;
 
 			case 2:
@@ -184,10 +206,14 @@ void Menu::menu_de_opciones(char const* archivo){
 				buscar_cliente();
 			break;
 
+			case 5:
+				precio_de_un_producto();
+			break;
+
 			default:
 				cout << "saliendo..." << endl;
 		}
-	}while(opcion != 5);	
+	}while(opcion != 6);	
 }
 
 Menu::~Menu(){

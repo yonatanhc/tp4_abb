@@ -6,7 +6,7 @@ CFILES = main.cpp lista.cpp menu.cpp nodo.cpp abb.cpp cliente.cpp individuo.cpp 
 HFILES = nodo.h lista.h menu.h abb.h nodo_abb.h familia.h individuo.h cliente.h 
 EXEC_S = pruebas
 
-CPARAMETRO = archivo.txt
+CPARAMETRO = clientes.txt
 
 build: $(CFILES)
 	$(CC) $(CFLAGS) $(CFILES) $(HFILES) -o $(EXEC_S) 

@@ -40,5 +40,5 @@ Nodo_abb* Nodo_abb::obtener_izquierda(){
 }
 
 Nodo_abb::~Nodo_abb(){
-	
+	delete dato;
 }
