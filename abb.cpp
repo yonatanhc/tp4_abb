@@ -82,11 +82,12 @@ void Abb::agregar_nodo(int clave,Cliente* d){
 }
 
 void Abb::swap(Nodo_abb* nodo1,Nodo_abb* nodo2){
-	Nodo_abb* aux = nodo2;
+	Cliente* aux = nodo1->obtener_dato();
+	int clave = nodo1->obtener_clave();
 	nodo1->cambiar_dato(nodo2->obtener_dato());
 	nodo1->cambiar_clave(nodo2->obtener_clave());
-	nodo2->cambiar_dato(aux->obtener_dato());
-	nodo2->cambiar_clave(aux->obtener_clave());
+	nodo2->cambiar_dato(aux);
+	nodo2->cambiar_clave(clave);
 }
 
 void Abb::tipo_de_nodo(Nodo_abb* nodo){
