@@ -49,21 +49,17 @@ class Abb{
 		void swap(Nodo_abb* nodo1,Nodo_abb* nodo2);
 
 		//COMENTARIO: si el parámetro "nodo"  tiene un hijo
-		bool tipo_de_nodo(Nodo_abb* nodo,int clave);
+		void tipo_de_nodo(Nodo_abb* nodo);
 
 		//PRE: el parámetro "nodo" es una hoja, nodo_derecha == NULL y nodo_izquierda == NULL
 		//     "clave" esta vinculado al nodo_abb que queremos eliminar 
 		//POST: si el nodo se elimino de fomra correcta devuelve true, sino false
-		bool eliminar_nodo_hoja(Nodo_abb* nodo,int clave);
-
-		//COMENTARIO:recorremos todos los nodo_abb que se encuentra ala derecha
-		//			 del parametro "nodo" hasta que  nodo->derecha == NULL
-		Nodo_abb* buscar_izquierda_maximo(Nodo_abb* nodo);
+		void eliminar_nodo_hoja(Nodo_abb* padre,Nodo_abb* nodo);
 
 		//PRE: el parámetro "nodo" es nodo->derecha == NULL o nodo->izquierda == NULL
 		//		"clave" esta vínculado al nodo_abb que queremos eliminar
 		//POST: devuelve true si el nodo buscado se elimina de forma correcta, sino será false
-		bool eliminar_nodo_con_un_hijo(Nodo_abb* nodo,int clave);
+		void eliminar_nodo_con_un_hijo(Nodo_abb* padre,Nodo_abb* nodo);
 
 		//COMENTARIO: recorremos todos los nodo_abb izquierdos del parametro "nodo"
 		//				hasta que nodo->izquierda == NULL y devolvemos dicho nodo_abb
@@ -71,7 +67,7 @@ class Abb{
 
 		//PRE: del parámetro "nodo" sus atributos derecha e izquierda son distintos a NULL
 		//POST: si el nodo se logra eliminar devuelve true sino false
-		bool eliminar_nodo_con_dos_hijos(Nodo_abb* nodo,int clave);
+		void eliminar_nodo_con_dos_hijos(Nodo_abb* nodo);
 
 		//PRE: "nodo" = raiz del arbol
 		//COMENTARIO: se usa dentro del destructor.recorremos el arbol 
